@@ -15,7 +15,7 @@ header {
 }
 
 header h1 {
-    font-size: 4.5rem;
+    font-size: 4vw;
     color: white;
     background-color: rgba(190, 0, 0, 0.8);
     display: inline-block;
@@ -32,7 +32,7 @@ header h1 {
 .logo {
     height: 200px;
     width: auto;
-    
+    max-width: 90vw;
 }
 
 .barra-navegacion {
@@ -70,6 +70,7 @@ main section {
     padding: 1em;
     max-width: 1000px;
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 /* Noticias y eventos */
@@ -86,27 +87,24 @@ article h3 {
 }
 
 img {
+    max-width: 100%;
+    height: auto;
     border-radius: 5px;
     margin-top: 0.5em;
     margin-right: 20px;
-
-
-
-    
 }
 
 .contenedor-imagenes{
     display: flex;
     justify-content: center;
     gap: 10px;
-
 }
 
 .contenedor-imagenes img{
     width: 450px;
+    max-width: 100%;
     height: auto;
 }
-
 
 /* Formularios */
 form {
@@ -124,6 +122,8 @@ textarea {
     border: none;
     border-radius: 5px;
     font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button {
@@ -134,6 +134,8 @@ button {
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    width: 100%;
+    font-size: 1em;
 }
 
 button:hover {
@@ -151,7 +153,6 @@ figcaption {
     font-style: italic;
 }
 
-
 footer {
     background-color: #1a1a1a;
     color: white;
@@ -166,13 +167,66 @@ footer section {
     margin: 0 auto 1em auto;
 }
 
+@media screen and (max-width: 900px) {
+    header {
+        padding: 2rem 1rem;
+    }
+    .logo {
+        height: 120px;
+    }
+    main section {
+        max-width: 95vw;
+        padding: 1em;
+    }
+}
+
 @media screen and (max-width: 600px) {
-    nav ul {
+    header {
+        padding: 1rem 0.5rem;
+    }
+    .logo {
+        height: 70px;
+    }
+    .barra-navegacion ul {
         flex-direction: column;
         align-items: center;
+        gap: 1em;
     }
-
+    .contenedor-imagenes {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    .contenedor-imagenes img {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
     main section {
-        padding: 1em;
+        max-width: 98vw;
+        padding: 0.5em;
+    }
+    form input,
+    form select,
+    form textarea,
+    form button {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    h3 {
+        font-size: 1.2em;
+    }
+    article {
+        padding: 0.5em;
+        margin: 0.5em 0;
+    }
+    footer {
+        padding: 1em 0.5em;
     }
 }
