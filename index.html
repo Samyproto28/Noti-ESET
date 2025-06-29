@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>Add commentMore actions
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,15 @@
     <meta name="description" content="NotiEset - Centro de noticias para estudiantes de ESET UNQ">
     <meta name="author" content="Alejo Cruz, Samuel Angarita, Candela Ybañez, Ignacio González, Alejandro Soria, Abigail Durán">
     <title>NotiEset - Noticias ESET UNQ</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Encabezado principal -->
     <header>
+        <div class="logo-container">
+            <img src="logo eset.png" alt="Logo de ESET UNQ" class="logo">
+        </div>
         <h1>NotiEset</h1>
-        <nav aria-label="Navegación principal">
+        <nav class= "barra-navegacion" aria-label="Navegación principal">
             <ul>
                 <li><a href="#inicio" aria-current="page">Inicio</a></li>
                 <li><a href="#noticias">Noticias</a></li>
@@ -22,16 +25,12 @@
             </ul>
         </nav>
     </header>
-
-    <!-- Contenido principal -->
     <main>
-        <!-- Sección de inicio -->
         <section id="inicio" aria-labelledby="inicio-heading">
             <h2 id="inicio-heading">Bienvenidos a NotiEset</h2>
             <p>Tu centro de noticias para estar al día con todo lo que sucede en la ESET UNQ. Mantente informado sobre paros, inscripciones, eventos y más.</p>
         </section>
 
-        <!-- Sección de noticias -->
         <section id="noticias" aria-labelledby="noticias-heading">
             <h2 id="noticias-heading">Últimas Noticias</h2>
             <article class="noticia" aria-labelledby="noticia-1">
@@ -48,20 +47,20 @@
                     </ul>
                 </section>
             </article>
-            <!-- Más noticias pueden ser agregadas dinámicamente -->
         </section>
 
-        <!-- Sección de eventos -->
         <section id="eventos" aria-labelledby="eventos-heading">
             <h2 id="eventos-heading">Próximos Eventos</h2>
             <article class="evento" aria-labelledby="evento-1">
                 <h3 id="evento-1">Taller de Sábados</h3>
-                <p>Inscripciones abiertas para el taller de programación del próximo sábado.</p>
+                <div class="contenedor-imagenes">
+                    <img src="taller eset1.jpg" alt="Fotos de eventos en ESET UNQ">
+                    <img src="taller eset2.jpg" alt="Fotos de eventos en ESET UNQ">
+                </div>
                 <p><strong>Fecha:</strong> 20/05/2023</p>
             </article>
         </section>
 
-        <!-- Sección de galería -->
         <section id="galeria" aria-labelledby="galeria-heading">
             <h2 id="galeria-heading">Galería</h2>
             <figure>
@@ -116,7 +115,6 @@
         </section>
     </main>
 
-    <!-- Pie de página -->
     <footer>
         <section id="sobre-nosotros" aria-labelledby="sobre-nosotros-heading">
             <h2 id="sobre-nosotros-heading">Sobre Nosotros</h2>
