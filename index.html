@@ -7,6 +7,7 @@
     <meta name="author" content="Alejo Cruz, Samuel Angarita, Candela Ybañez, Ignacio González, Alejandro Soria, Abigail Durán">
     <title>NotiEset - Noticias ESET UNQ</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="main.js"></script>
 </head>
 <body>
     <header>
@@ -24,7 +25,42 @@
                 <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
             </ul>
         </nav>
+        <div id="header-auth-area">
+            <button id="header-auth-btn">Iniciar sesión / Crear cuenta</button>
+            <span id="header-user-info" style="display:none;"></span>
+            <button id="header-logout-btn" style="display:none;">Cerrar sesión</button>
+        </div>
     </header>
+    <div id="auth-container">
+        <div id="login-form" style="display: none;">
+            <h2>Iniciar Sesión</h2>
+            <form id="form-login">
+                <label for="login-email">Correo electrónico:</label>
+                <input type="email" id="login-email" name="email" required>
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" name="password" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p id="login-error" class="auth-error"></p>
+            <p>¿No tienes cuenta? <button type="button" id="show-register">Crear cuenta</button></p>
+        </div>
+        <div id="register-form" style="display: none;">
+            <h2>Crear Cuenta</h2>
+            <form id="form-register">
+                <label for="register-email">Correo electrónico:</label>
+                <input type="email" id="register-email" name="email" required>
+                <label for="register-password">Contraseña:</label>
+                <input type="password" id="register-password" name="password" required>
+                <button type="submit">Registrarse</button>
+            </form>
+            <p id="register-error" class="auth-error"></p>
+            <p>¿Ya tienes cuenta? <button type="button" id="show-login">Iniciar sesión</button></p>
+        </div>
+        <div id="user-info" style="display: none;">
+            <p id="user-email"></p>
+            <button id="logout-btn">Cerrar sesión</button>
+        </div>
+    </div>
     <main>
         <section id="inicio" aria-labelledby="inicio-heading">
             <h2 id="inicio-heading">Bienvenidos a NotiEset</h2>

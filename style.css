@@ -239,3 +239,33 @@ footer section {
         padding: 1em 0.5em;
     }
 }
+
+#header-auth-area {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+#header-auth-btn, #header-logout-btn {
+    background-color: #b60000;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+}
+#header-auth-btn:hover, #header-logout-btn:hover {
+    background-color: #d00000;
+}
+#header-user-info {
+    color: #fff;
+    font-size: 0.95em;
+    background: rgba(0,0,0,0.3);
+    padding: 0.3em 0.7em;
+    border-radius: 4px;
+}
