@@ -9,7 +9,7 @@ const app = express();
 app.use(helmet());
 
 // Seguridad: CORS solo para dominios permitidos (ajustar origins en producción)
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({ origin: 'https://samyproto28.github.io', credentials: true }));
 
 // Parseo de JSON
 app.use(express.json());
