@@ -1,6 +1,6 @@
 // --- Lógica de autenticación ---
 
-const API_URL = 'http://localhost:4000/api'; // Cambia si tu backend está en otro puerto
+const API_URL = 'https://noti-eset.onrender.com/api'; // Cambia si tu backend está en otro puerto
 
 let currentUser = null;
 
