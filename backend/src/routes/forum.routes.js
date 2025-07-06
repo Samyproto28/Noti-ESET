@@ -1,5 +1,5 @@
 const express = require('express');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware } = require('../middleware/authMiddleware');
 const {
   getAllPosts, getPostById, createPost, updatePost, deletePost,
   getCommentsByPost, createComment, updateComment, deleteComment

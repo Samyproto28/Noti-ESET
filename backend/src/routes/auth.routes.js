@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const supabase = require('../services/supabaseClient');
-const { authMiddleware } = require('../middleware/auth');
+const supabase = require('../config/supabaseClient');
+const { authMiddleware } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const { getAllNews, getNewsById, createNews, updateNews, deleteNews } = require('../services/newsService');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 

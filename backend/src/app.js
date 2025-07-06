@@ -15,9 +15,9 @@ app.use(cors({ origin: 'https://samyproto28.github.io', credentials: true }));
 app.use(express.json());
 
 // Rutas base (se agregarán más adelante)
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/news', require('./routes/news'));
-app.use('/api/forum', require('./routes/forum'));
+app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/news', require('./routes/news.routes'));
+app.use('/api/forum', require('./routes/forum.routes'));
 
 // Ruta de prueba
 app.get('/', (req, res) => {

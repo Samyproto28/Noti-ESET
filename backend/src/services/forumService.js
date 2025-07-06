@@ -1,4 +1,4 @@
-const supabase = require('./supabaseClient');
+const supabase = require('../config/supabaseClient');
 
 // Posts
 async function getAllPosts() {
