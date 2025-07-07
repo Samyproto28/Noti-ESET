@@ -7,6 +7,9 @@
     <meta name="author" content="Alejo Cruz, Samuel Angarita, Candela Ybañez, Ignacio González, Alejandro Soria, Abigail Durán">
     <title>NotiEset - Noticias ESET UNQ</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Swiper.js CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="main.js"></script>
 </head>
 <body>
@@ -99,10 +102,17 @@
 
         <section id="galeria" aria-labelledby="galeria-heading">
             <h2 id="galeria-heading">Galería</h2>
-            <figure>
-                <!-- <img src="placeholder-galeria.jpg" alt="Fotos de actividades en ESET UNQ"> -->
-                <figcaption>Imágenes de eventos recientes en la escuela.</figcaption>
-            </figure>
+            <!-- Carrusel Swiper -->
+            <div class="galeria-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="Img/734eaf6e-0aa7-4e4a-806a-e64fb3941b5b.jpg" alt="Imagen 1"></div>
+                    <div class="swiper-slide"><img src="Img/feria intercambio 2.jpg" alt="Imagen 2"></div>
+                </div>
+                <!-- Controles -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
         </section>
 
         <!-- Sección de foro -->
@@ -158,5 +168,16 @@
         </section>
         <p>&copy; 2023 NotiEset - Todos los derechos reservados</p>
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.galeria-swiper', {
+          loop: true,
+          pagination: { el: '.swiper-pagination', clickable: true },
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+          slidesPerView: 1,
+          spaceBetween: 20,
+        });
+      });
+    </script>
 </body>
 </html>
