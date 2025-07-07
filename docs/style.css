@@ -201,10 +201,36 @@ button:hover {
 }
 
 .galeria-swiper .swiper-slide img{ 
-    width: 400px;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 300px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
     display: block;
+}
+
+/* Estilos para los botones de navegación de Swiper */
+.swiper-button-next, .swiper-button-prev {
+    color: #b60000; /* Color de las flechas */
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Estilos para la paginación de Swiper */
+.swiper-pagination-bullet {
+    background: #b60000;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ffffff;
 }
 
 footer {

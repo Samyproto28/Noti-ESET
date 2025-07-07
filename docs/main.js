@@ -377,6 +377,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     cargarNoticias();
 
+    // Inicialización del Swiper
+    const swiper = new Swiper('.galeria-swiper', {
+        // Opciones de Swiper
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            // when window width is >= 640px
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            // when window width is >= 1024px
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            }
+        }
+    });
+
     // --- FORO ---
     const foroSection = document.getElementById('foro');
     let temas = [];
