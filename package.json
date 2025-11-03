@@ -1,0 +1,117 @@
+{
+  "name": "noti-eset",
+  "version": "1.0.0",
+  "description": "Aplicación de noticias ESET con foro integrado",
+  "main": "frontend/src/main.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "test": "node scripts/run-tests.js",
+    "test:unit": "node scripts/run-tests.js --unit",
+    "test:integration": "node scripts/run-tests.js --integration",
+    "test:e2e": "node scripts/run-tests.js --e2e",
+    "test:performance": "node scripts/run-tests.js --performance",
+    "test:load": "node scripts/run-tests.js --load",
+    "test:accessibility": "node scripts/run-tests.js --accessibility",
+    "test:coverage": "node scripts/run-tests.js --coverage",
+    "test:backend": "cd backend && npm test",
+    "test:backend:unit": "cd backend && npm run test:unit",
+    "test:backend:integration": "cd backend && npm run test:integration",
+    "test:backend:coverage": "cd backend && npm run test:coverage",
+    "test:frontend": "cd frontend && npm test",
+    "test:cypress": "cd frontend && npm run test:cypress",
+    "test:cypress:open": "cd frontend && npm run test:cypress:open",
+    "test:cypress:headless": "cd frontend && npm run test:cypress:headless",
+    "test:cypress:performance": "cd frontend && npm run test:cypress:performance",
+    "test:cypress:accessibility": "cd frontend && npm run test:cypress:accessibility",
+    "test:cypress:e2e": "cd frontend && npm run test:cypress:e2e",
+    "test:artillery": "artillery run tests/load/foro-load-test.yml",
+    "test:artillery:report": "artillery run tests/load/foro-load-test.yml --output artillery-report.json",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:fix": "npm run lint:fix:backend && npm run lint:fix:frontend",
+    "lint:fix:backend": "cd backend && npm run lint:fix",
+    "lint:fix:frontend": "cd frontend && npm run lint:fix",
+    "format": "npm run format:backend && npm run format:frontend",
+    "format:backend": "cd backend && npm run format",
+    "format:frontend": "cd frontend && npm run format",
+    "report": "node scripts/generate-test-report.js",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "clean": "rm -rf node_modules backend/node_modules frontend/node_modules",
+    "clean:install": "npm run clean && npm run install:all",
+    "prepare": "husky install",
+    "precommit": "npm run lint && npm run test:unit",
+    "prepush": "npm run test",
+    "ci": "npm run install:all && npm run lint && npm run test",
+    "ci:backend": "cd backend && npm ci && npm run lint && npm run test",
+    "ci:frontend": "cd frontend && npm ci && npm run lint && npm run test",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "deploy": "npm run build && npm run test:artillery:report",
+    "docker:build": "docker build -t noti-eset .",
+    "docker:run": "docker run -p 3000:3000 -p 4000:4000 noti-eset",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker-compose -f docker-compose.prod.yml up",
+    "docs:generate": "jsdoc -c jsdoc.conf.json",
+    "docs:serve": "http-server docs -p 8080",
+    "security:audit": "npm audit && cd backend && npm audit && cd ../frontend && npm audit",
+    "security:fix": "npm audit fix && cd backend && npm audit fix && cd ../frontend && npm audit fix",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "noticias",
+    "eset",
+    "foro",
+    "javascript",
+    "nodejs",
+    "express",
+    "react",
+    "cypress"
+  ],
+  "author": "ESET",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "cypress": "^15.3.0",
+    "http-server": "^14.1.1",
+    "husky": "^8.0.3",
+    "jsdoc": "^4.0.2",
+    "lint-staged": "^13.2.0"
+  },
+  "dependencies": {
+    "artillery": "^2.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:unit"
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eset/noti-eset.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eset/noti-eset/issues"
+  },
+  "homepage": "https://github.com/eset/noti-eset#readme"
+}

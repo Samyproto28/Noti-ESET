@@ -1,0 +1,902 @@
+/* Estilos básicos para el foro */
+.foro-controls {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.foro-filters {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#form-crear-tema {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+#form-crear-tema .form-group {
+    margin-bottom: 15px;
+}
+
+#form-crear-tema label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#form-crear-tema input,
+#form-crear-tema select,
+#form-crear-tema textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#form-crear-tema button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#form-crear-tema button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
+
+#form-crear-tema button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+}
+
+.tema {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.tema-header {
+    margin-bottom: 15px;
+}
+
+.tema-header h4 {
+    margin: 10px 0 5px 0;
+    color: #333;
+}
+
+.tema-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.tema-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.tema-content {
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+.tema-actions {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.tema-actions button {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.tema-actions button:hover {
+    background: #e9ecef;
+}
+
+.edit-btn {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.delete-btn {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.comentarios-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.comentarios-section h5 {
+    margin-bottom: 15px;
+    color: #495057;
+}
+
+.comentario {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 8px 0;
+}
+
+.comentario.nivel-0 {
+    background: #f8f9fa;
+}
+
+.comentario.nivel-1 {
+    background: #e9ecef;
+}
+
+.comentario.nivel-2 {
+    background: #dee2e6;
+}
+
+.comment-content p {
+    margin: 0 0 8px 0;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.comment-stats {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.comment-actions button {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.form-comentar {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.comment-form button {
+    align-self: flex-start;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.category-badge {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#btn-crear-tema:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Estilos para paginación */
+.pagination-container {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pagination-info {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #007bff;
+    color: white;
+}
+
+.pagination-btn:disabled {
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+    border-color: #e9ecef;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.page-number {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.page-number:hover {
+    background: #e9ecef;
+}
+
+.page-number.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination-ellipsis {
+    padding: 0 5px;
+    color: #6c757d;
+}
+
+/* Mejoras en los filtros para el ordenamiento */
+.foro-filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Indicadores de ordenamiento activos */
+.filter-group select.active {
+    border-color: #007bff;
+    font-weight: 500;
+}
+
+/* Animaciones suaves */
+.tema {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Indicador de carga */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Botón de ir arriba */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.scroll-top-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px);
+}
+
+/* Indicadores de carga mejorados */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Indicador de carga para comentarios */
+.comments-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.comments-loading::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+/* Mejoras en la retroalimentación visual */
+.tema {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tema:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.comentario {
+    transition: background-color 0.2s ease;
+}
+
+.comentario:hover {
+    background-color: #f8f9fa;
+}
+
+/* Botones con mejor retroalimentación */
+.pagination-btn, .page-number, .btn-crear-tema, button {
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled),
+.page-number:hover:not(.active),
+.btn-crear-tema:hover,
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pagination-btn:active:not(:disabled),
+.page-number:active:not(.active),
+.btn-crear-tema:active,
+button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Indicador de estado de conexión */
+.connection-status {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    font-size: 12px;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.connection-status .status-indicator {
+    margin-right: 5px;
+}
+
+/* Mejoras en la accesibilidad visual */
+.focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Animaciones suaves para transiciones */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el indicador de estado de conexión */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-indicator.online {
+    background-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.status-indicator.offline {
+    background-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
+
+/* Estilos para el panel de atajos de teclado */
+.keyboard-shortcuts {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 300px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.keyboard-shortcuts.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.keyboard-shortcuts h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.keyboard-shortcuts ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.keyboard-shortcuts li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.keyboard-shortcuts kbd {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #333;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+}
+
+/* Mejoras en la navegación por teclado */
+.foro-filters select:focus,
+.foro-filters input:focus,
+.pagination-btn:focus,
+.page-number:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Atajos de teclado visuales */
+.keyboard-shortcuts {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 1000;
+    max-width: 200px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.keyboard-shortcuts.show {
+    opacity: 1;
+}
+
+.keyboard-shortcuts h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+}
+
+.keyboard-shortcuts ul {
+    margin: 0;
+    padding: 0 0 0 15px;
+}
+
+.keyboard-shortcuts li {
+    margin-bottom: 3px;
+}
+
+/* Breadcrumb de navegación */
+.foro-breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.foro-breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.foro-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.foro-breadcrumb .separator {
+    margin: 0 8px;
+}
+
+/* Mejoras en la accesibilidad */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Indicadores de estado */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-indicator.online {
+    background-color: #28a745;
+}
+
+.status-indicator.offline {
+    background-color: #dc3545;
+}
+
+.status-indicator.loading {
+    background-color: #ffc107;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .foro-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-group {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .pagination-controls {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .pagination-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .page-number {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    .scroll-top-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .keyboard-shortcuts {
+        display: none;
+    }
+    
+    .tema-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .tema-actions {
+        flex-wrap: wrap;
+    }
+    
+    .comment-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* Estilos para lazy loading */
+.comments-lazy-load {
+    position: relative;
+    min-height: 60px;
+    transition: opacity 0.3s ease;
+}
+
+.comments-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px dashed #ced4da;
+    border-radius: 4px;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.comments-placeholder:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+/* Optimización de renderizado */
+.tema {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Efectos de carga para imágenes */
+img[data-src] {
+    background-color: #f8f9fa;
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+img.loaded {
+    filter: blur(0);
+}
+
+/* Optimización para animaciones */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Indicador de progreso para carga de comentarios */
+.comment-progress {
+    height: 2px;
+    background-color: #e9ecef;
+    border-radius: 1px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.comment-progress-bar {
+    height: 100%;
+    background-color: #007bff;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+/* Mejoras de rendimiento para scroll */
+.temas-list {
+    contain: layout style paint;
+}
+
+/* Optimización para dispositivos móviles */
+@media (max-width: 768px) {
+    .comments-placeholder {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .comments-lazy-load {
+        min-height: 50px;
+    }
+}

@@ -1,0 +1,47 @@
+import jwt from 'jsonwebtoken';
+
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ error: 'Token requerido' });
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Token inválido' });
+  }
+}
+
+// Middleware de autorización por rol
+function authorizeRoles(...roles) {
+  return (req, res, next) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      return res.status(403).json({ error: 'No autorizado' });
+    }
+    next();
+  };
+}
+
+// Middleware de autenticación opcional (para rutas públicas)
+function optionalAuthMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    // No hay token, continuar sin usuario
+    req.user = null;
+    return next();
+  }
+  
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    // Token inválido, pero continuar sin usuario
+    req.user = null;
+    next();
+  }
+}
+
+export { authMiddleware, authorizeRoles, optionalAuthMiddleware };

@@ -1,0 +1,102 @@
+config:
+  target: 'http://localhost:4000'
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm up"
+    - duration: 120
+      arrivalRate: 10
+      name: "Ramp up load"
+    - duration: 300
+      arrivalRate: 20
+      name: "Sustained load"
+  processor: "./test-processor.js"
+
+scenarios:
+  - name: "Cargar posts del foro"
+    weight: 40
+    flow:
+      - get:
+          url: "/api/forum/posts"
+          headers:
+            Content-Type: "application/json"
+          capture:
+            - json: "$.data[0].id"
+              as: "postId"
+      - think: 2
+
+  - name: "Obtener detalles de un post"
+    weight: 20
+    flow:
+      - get:
+          url: "/api/forum/posts/{{ postId }}"
+          headers:
+            Content-Type: "application/json"
+      - think: 3
+
+  - name: "Obtener comentarios de un post"
+    weight: 15
+    flow:
+      - get:
+          url: "/api/forum/posts/{{ postId }}/comments"
+          headers:
+            Content-Type: "application/json"
+      - think: 2
+
+  - name: "Buscar posts"
+    weight: 10
+    flow:
+      - get:
+          url: "/api/forum/search?q=test"
+          headers:
+            Content-Type: "application/json"
+      - think: 1
+
+  - name: "Crear un post"
+    weight: 5
+    flow:
+      - post:
+          url: "/api/forum/posts"
+          headers:
+            Content-Type: "application/json"
+          json:
+            title: "Post de prueba de carga {{ $randomString() }}"
+            content: "Contenido del post de prueba de carga {{ $randomString() }}"
+            category_id: "123e4567-e89b-12d3-a456-426614174000"
+      - think: 1
+
+  - name: "Crear un comentario"
+    weight: 5
+    flow:
+      - post:
+          url: "/api/forum/posts/{{ postId }}/comments"
+          headers:
+            Content-Type: "application/json"
+          json:
+            content: "Comentario de prueba de carga {{ $randomString() }}"
+      - think: 1
+
+  - name: "Reaccionar a un post"
+    weight: 3
+    flow:
+      - post:
+          url: "/api/reactions/toggle"
+          headers:
+            Content-Type: "application/json"
+          json:
+            post_id: "{{ postId }}"
+            reaction_type: "like"
+      - think: 1
+
+  - name: "Obtener conteos"
+    weight: 2
+    flow:
+      - get:
+          url: "/api/forum/posts/count"
+          headers:
+            Content-Type: "application/json"
+      - get:
+          url: "/api/forum/posts/{{ postId }}/comments/count"
+          headers:
+            Content-Type: "application/json"
+      - think: 1
