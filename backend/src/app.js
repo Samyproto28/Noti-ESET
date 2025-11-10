@@ -36,6 +36,11 @@ app.get('/', (req, res) => {
   res.json({ ok: true, message: 'Backend NotiESET funcionando' });
 });
 
+// Ruta de health check para Cypress
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend NotiESET saludable' });
+});
+
 // Ruta para obtener estadísticas de rendimiento
 app.get('/api/performance/stats', (req, res) => {
   const { getPerformanceStats } = require('./middleware/performanceMiddleware.js');
