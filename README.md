@@ -1,1 +1,1 @@
-https://samyproto28.github.io/Noti-ESET/
+https://github.com/Samyproto28/Noti-ESET.git
