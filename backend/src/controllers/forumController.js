@@ -358,14 +358,14 @@ const getPostCommentsCount = asyncHandler(async (req, res) => {
 });
 
 // Nuevo endpoint para obtener posts populares
-const getPopularPosts = asyncHandler(async (req, res) => {
+const getPopularPostsController = asyncHandler(async (req, res) => {
   const { limit = 10, timeRange = 'week' } = req.query;
-  
+
   const { data, error } = await getPopularPosts({
     limit: parseInt(limit),
     timeRange
   });
-  
+
   if (error) {
     return res.status(500).json(ApiResponse.error(error.message));
   }
@@ -391,5 +391,5 @@ export {
   getCommentReplies,
   getPostsCount,
   getPostCommentsCount,
-  getPopularPosts
+  getPopularPostsController
 };

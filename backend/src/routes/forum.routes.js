@@ -1,3 +1,4 @@
+// Importación ES6 para consistencia con el resto del proyecto
 import express from 'express';
 import { param } from 'express-validator';
 import { authMiddleware, optionalAuthMiddleware } from '../middleware/authMiddleware.js';
@@ -23,7 +24,7 @@ import {
   getCommentReplies,
   getPostsCount,
   getPostCommentsCount,
-  getPopularPosts
+  getPopularPostsController
 } from '../controllers/forumController.js';
 
 const router = express.Router();
@@ -77,6 +78,6 @@ router.get('/posts/count', getPostsCount);
 router.get('/posts/:post_id/comments/count', [param('post_id').isUUID().withMessage('El ID del post debe ser un UUID válido')], handleValidationErrors, getPostCommentsCount);
 
 // Endpoint para posts populares
-router.get('/posts/popular', getPopularPosts);
+router.get('/posts/popular', getPopularPostsController);
 
 export default router;

@@ -1,3 +1,4 @@
+// Importación ES6 para consistencia con el resto del proyecto
 import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 

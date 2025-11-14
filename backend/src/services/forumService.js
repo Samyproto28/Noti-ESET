@@ -1,3 +1,4 @@
+// Importación ES6 para consistencia con el resto del proyecto
 import supabase from '../config/supabaseClient.js';
 import { getUserIdForForum } from './userService.js';
 import { isValidUserId } from '../utils/uuidValidator.js';
@@ -94,7 +95,7 @@ async function getPostBySlug(slug) {
 /**
  * Valida los datos para crear un post
  * @param {Object} postData - Datos del post
- * @returns {Object} Resultado de validación
+ * @returns {Object} Resultado de la validación
  */
 function validatePostData({ title, content, category_id }) {
   const errors = [];
@@ -369,7 +370,7 @@ function generateCommentPath(parentPath, commentId) {
 /**
  * Valida los datos para crear un comentario
  * @param {Object} commentData - Datos del comentario
- * @returns {Object} Resultado de validación
+ * @returns {Object} Resultado de la validación
  */
 function validateCommentData({ content }) {
   const errors = [];
@@ -562,23 +563,6 @@ async function deleteComment(comment_id) {
   }
 }
 
-// Obtener replies de un comentario específico
-async function getRepliesByComment(comment_id, { limit = 20, offset = 0 } = {}) {
-  // Validar que el ID sea un UUID válido
-  if (!isValidUserId(comment_id)) {
-    return { data: null, error: new Error('ID de comentario inválido') };
-  }
-  
-  return await supabase
-    .from('forum_comments')
-    .select(`
-      *,
-      user_profiles(username, display_name, avatar_url)
-    `)
-    .eq('parent_comment_id', comment_id)
-    .order('created_at')
-    .range(offset, offset + limit - 1);
-}
 
 // Buscar posts
 async function searchPosts(searchTerm, { categoryId = null, limit = 20, offset = 0 } = {}) {

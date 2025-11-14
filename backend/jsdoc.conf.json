@@ -1,0 +1,36 @@
+{
+  "source": {
+    "include": [
+      "./src/**/*.js"
+    ],
+    "exclude": [
+      "./src/config/**",
+      "./node_modules/**",
+      "./tests/**",
+      "./coverage/**"
+    ],
+    "includePattern": ".+\\.js(doc)?$"
+  },
+  "opts": {
+    "destination": "./docs/api/",
+    "recurse": true
+  },
+  "plugins": [
+    "plugins/markdown",
+    "plugins/summarize"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  },
+  "recurseDepth": 10,
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  }
+}

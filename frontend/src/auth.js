@@ -1,10 +1,11 @@
 import authStatus from './auth-status.js';
+export const API_URL = 'http://localhost:4000/api';
 
 class AuthManager {
   constructor() {
     this.token = null;
     this.user = null;
-    this.API_URL = 'http://localhost:4000/api';
+    this.API_URL = API_URL;
     this.TOKEN_KEY = 'auth_token';
     this.USER_KEY = 'auth_user';
     this.ANONYMOUS_USER_ID = '00000000-0000-0000-0000-000000000000';
@@ -311,7 +312,8 @@ class AuthManager {
         return { success: false, error: result.error };
       }
     } catch (error) {
-      console.error('Error en inicio de sesión:', error);
+      // Mejorar manejo de errores con logging específico
+      console.error(`Error en login para ${email}:`, error);
       return { success: false, error: 'Error de conexión' };
     }
   }
@@ -342,7 +344,8 @@ class AuthManager {
         return { success: false, error: result.error };
       }
     } catch (error) {
-      console.error('Error en registro:', error);
+      // Mejorar manejo de errores con logging específico
+      console.error(`Error en register para ${email}:`, error);
       return { success: false, error: 'Error de conexión' };
     }
   }

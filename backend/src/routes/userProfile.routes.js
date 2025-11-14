@@ -1,6 +1,6 @@
-const express = require('express');
-const { authMiddleware } = require('../middleware/authMiddleware');
-const { getMyProfile, updateMyProfile } = require('../controllers/userProfileController');
+import express from 'express';
+import { authMiddleware } from '../middleware/authMiddleware.js';
+import { getMyProfile, updateMyProfile } from '../controllers/userProfileController.js';
 
 const router = express.Router();
 
@@ -10,4 +10,4 @@ router.get('/me', authMiddleware, getMyProfile);
 // Actualizar mi perfil
 router.put('/me', authMiddleware, updateMyProfile);
 
-module.exports = router;
+export default router;

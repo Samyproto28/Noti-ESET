@@ -1,6 +1,5 @@
-import authManager from './auth.js';
+import authManager, { API_URL } from './auth.js';
 
-const API_URL = 'http://localhost:4000/api';
 
 let currentUser = null;
 
@@ -60,12 +59,49 @@ async function fetchProtegido(url, options = {}) {
     try {
         return await authManager.fetchWithAuth(url, options);
     } catch (error) {
+        // Mejorar manejo de errores con logging específico
+        console.error(`Error en fetchProtegido para ${url}:`, error);
+        
         if (error.message === 'Sesión expirada' || error.message === 'No autenticado') {
             mostrarMensajeSesionExpirada();
             await actualizarUIporSesion();
         }
+        
+        // Mostrar mensaje de error más descriptivo
+        mostrarMensajeError(`Error de conexión: ${error.message || 'Error desconocido'}`);
+        
+        // Lanzar error para que sea manejado por el código llamante
         throw error;
     }
+}
+
+/**
+ * Muestra un mensaje de error temporal
+ * @param {string} message - Mensaje a mostrar
+ */
+function mostrarMensajeError(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    
+    document.body.appendChild(messageDiv);
+    
+    // Eliminar después de 5 segundos
+    setTimeout(() => {
+        if (messageDiv.parentNode) {
+            messageDiv.parentNode.removeChild(messageDiv);
+        }
+    }, 5000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -247,28 +283,46 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const titulo = document.getElementById('titulo-noticia').value;
             const cuerpo = document.getElementById('cuerpo-noticia').value;
-            // const categoria = document.getElementById('categoria-noticia').value; // No se usa en backend
-            // const imagen = document.getElementById('imagen-noticia').files[0]; // No se usa en backend
             const token = getToken();
             if (!token) {
                 alert('Debes iniciar sesión para publicar.');
                 return;
             }
             try {
-                const res = await fetchProtegido(`${API_URL}/news`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ title: titulo, content: cuerpo })
-                });
-                if (!res.ok) {
-                    const data = await res.json();
-                    alert(data.error || 'Error al publicar noticia');
+                if (editandoNoticiaId) {
+                    const res = await fetchProtegido(`${API_URL}/news/${editandoNoticiaId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ title: titulo, content: cuerpo })
+                    });
+                    if (!res.ok) {
+                        const data = await res.json();
+                        alert(data.error || 'Error al editar noticia');
+                    } else {
+                        publicarNoticiaForm.reset();
+                        publicarNoticiaForm.querySelector('button[type="submit"]').textContent = 'Publicar';
+                        editandoNoticiaId = null;
+                        cargarNoticias();
+                    }
                 } else {
-                    publicarNoticiaForm.reset();
-                    cargarNoticias();
+                    const res = await fetchProtegido(`${API_URL}/news`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ title: titulo, content: cuerpo })
+                    });
+                    if (!res.ok) {
+                        const data = await res.json();
+                        alert(data.error || 'Error al publicar noticia');
+                    } else {
+                        publicarNoticiaForm.reset();
+                        cargarNoticias();
+                    }
                 }
             } catch {
                 alert('Error de red');
@@ -283,38 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         publicarNoticiaForm.querySelector('button[type="submit"]').textContent = 'Guardar cambios';
     }
 
-    publicarNoticiaForm.addEventListener('submit', async (e) => {
-        if (!editandoNoticiaId) return;
-        e.preventDefault();
-        const titulo = document.getElementById('titulo-noticia').value;
-        const cuerpo = document.getElementById('cuerpo-noticia').value;
-        const token = getToken();
-        if (!token) {
-            alert('Debes iniciar sesión para editar.');
-            return;
-        }
-        try {
-            const res = await fetchProtegido(`${API_URL}/news/${editandoNoticiaId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ title: titulo, content: cuerpo })
-            });
-            if (!res.ok) {
-                const data = await res.json();
-                alert(data.error || 'Error al editar noticia');
-            } else {
-                publicarNoticiaForm.reset();
-                publicarNoticiaForm.querySelector('button[type="submit"]').textContent = 'Publicar';
-                editandoNoticiaId = null;
-                cargarNoticias();
-            }
-        } catch {
-            alert('Error de red');
-        }
-    }, true);
+    
 
     async function eliminarNoticia(id) {
         const token = getToken();

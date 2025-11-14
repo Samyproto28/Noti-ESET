@@ -1,17 +1,18 @@
+// Importación ES6 para consistencia con el resto del proyecto
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { authMiddleware } from '../middleware/authMiddleware.js';
-import { validateRegister, validateLogin, handleValidationErrors } from '../validators/authValidators.js';
+import { validateRegister, validateLogin, sanitizeAuthInput } from '../validators/authValidators.js';
 import { register, login, getProfile } from '../controllers/authController.js';
 import ApiResponse from '../utils/responseHelper.js';
 
 const router = express.Router();
 
 // Registro de usuario
-router.post('/register', validateRegister, handleValidationErrors, register);
+router.post('/register', sanitizeAuthInput, validateRegister, register);
 
 // Login de usuario
-router.post('/login', validateLogin, handleValidationErrors, login);
+router.post('/login', sanitizeAuthInput, validateLogin, login);
 
 // Ruta protegida: perfil del usuario
 router.get('/profile', authMiddleware, getProfile);

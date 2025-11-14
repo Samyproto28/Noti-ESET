@@ -1,6 +1,6 @@
-const { getProfileByUserId, upsertProfile } = require('../services/userProfileService');
-const ApiResponse = require('../utils/responseHelper');
-const { asyncHandler } = require('../middleware/errorHandler');
+import { getProfileByUserId, upsertProfile } from '../services/userProfileService.js';
+import ApiResponse from '../utils/responseHelper.js';
+import { asyncHandler } from '../middleware/errorHandler.js';
 
 // Obtener perfil del usuario autenticado
 const getMyProfile = asyncHandler(async (req, res) => {
@@ -33,7 +33,7 @@ const updateMyProfile = asyncHandler(async (req, res) => {
   res.json(ApiResponse.success(data, 'Perfil actualizado exitosamente'));
 });
 
-module.exports = {
+export {
   getMyProfile,
   updateMyProfile
 };

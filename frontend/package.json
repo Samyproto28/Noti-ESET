@@ -1,0 +1,67 @@
+{
+  "name": "noti-eset-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "dev": "python -m http.server 5500",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix"
+  },
+  "keywords": [
+    "noticieset",
+    "frontend",
+    "javascript"
+  ],
+  "author": "Equipo NotiESET",
+  "license": "ISC",
+  "description": "Frontend del sistema de noticias NotiESET",
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/plugin-transform-runtime": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@jest/globals": "^29.7.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/user-event": "^14.6.1",
+    "babel-jest": "^30.2.0",
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "swiper": "^12.0.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/tests"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js",
+      "!src/assets/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "testTimeout": 10000,
+    "transform": {},
+    "extensionsToTreatAsEsm": [
+      ".js"
+    ]
+  }
+}

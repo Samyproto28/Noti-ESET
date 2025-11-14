@@ -1,4 +1,4 @@
-import authManager from './auth.js';
+import authManager, { API_URL } from './auth.js';
 import forumAuth from './forum-auth.js';
 import cacheService from './cacheService.js';
 import performanceMonitor from './performanceMonitor.js';
@@ -6,7 +6,7 @@ import performanceMonitor from './performanceMonitor.js';
 // FUNCIONALIDAD COMPLETA DEL FORO
 class ForoCompleto {
     constructor() {
-        this.API_URL = 'http://localhost:4000/api';
+        this.API_URL = API_URL;
         this.temas = [];
         this.categorias = [];
         this.comentariosPorTema = {};
@@ -442,57 +442,73 @@ class ForoCompleto {
         // Medir tiempo de respuesta de la API
         const startTime = performance.now();
         
-        // Generar clave de caché
-        const cacheKey = cacheService.generateCacheKey(url, options.params || {});
-        
-        // Si se debe usar caché y es una petición GET, intentar obtener de caché
-        if (useCache && cacheService.has(cacheKey)) {
-            const cachedData = cacheService.get(cacheKey);
+        try {
+            // Generar clave de caché
+            const cacheKey = cacheService.generateCacheKey(url, options.params || {});
             
-            // Registrar tiempo de respuesta de caché
+            // Si se debe usar caché y es una petición GET, intentar obtener de caché
+            if (useCache && cacheService.has(cacheKey)) {
+                const cachedData = cacheService.get(cacheKey);
+                
+                // Registrar tiempo de respuesta de caché
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                performanceMonitor.recordApiCall(url, duration, 200); // 200 = OK
+                
+                // Crear respuesta simulada con datos de caché
+                return {
+                    ok: true,
+                    json: async () => cachedData,
+                    headers: new Headers({ 'X-Cache': 'HIT' })
+                };
+            }
+            
+            // Realizar petición real
+            const response = await forumAuth.fetchWithAuth(url, options);
+            
+            // Registrar tiempo de respuesta de la API
             const endTime = performance.now();
             const duration = endTime - startTime;
-            performanceMonitor.recordApiCall(url, duration, 200); // 200 = OK
+            performanceMonitor.recordApiCall(url, duration, response.status);
             
-            // Crear respuesta simulada con datos de caché
-            return {
-                ok: true,
-                json: async () => cachedData,
-                headers: new Headers({ 'X-Cache': 'HIT' })
-            };
-        }
-        
-        // Realizar petición real
-        const response = await forumAuth.fetchWithAuth(url, options);
-        
-        // Registrar tiempo de respuesta de la API
-        const endTime = performance.now();
-        const duration = endTime - startTime;
-        performanceMonitor.recordApiCall(url, duration, response.status);
-        
-        // Si es una petición GET exitosa, almacenar en caché
-        if (useCache && response.ok) {
-            try {
-                const data = await response.clone().json();
-                
-                // Determinar TTL según el tipo de contenido
-                let ttl = 5 * 60 * 1000; // 5 minutos por defecto
-                
-                if (url.includes('/posts')) {
-                    ttl = 3 * 60 * 1000; // 3 minutos para posts
-                } else if (url.includes('/comments')) {
-                    ttl = 2 * 60 * 1000; // 2 minutos para comentarios
-                } else if (url.includes('/categories')) {
-                    ttl = 10 * 60 * 1000; // 10 minutos para categorías
+            // Si es una petición GET exitosa, almacenar en caché
+            if (useCache && response.ok) {
+                try {
+                    const data = await response.clone().json();
+                    
+                    // Determinar TTL según el tipo de contenido
+                    let ttl = 5 * 60 * 1000; // 5 minutos por defecto
+                    
+                    if (url.includes('/posts')) {
+                        ttl = 3 * 60 * 1000; // 3 minutos para posts
+                    } else if (url.includes('/comments')) {
+                        ttl = 2 * 60 * 1000; // 2 minutos para comentarios
+                    } else if (url.includes('/categories')) {
+                        ttl = 10 * 60 * 1000; // 10 minutos para categorías
+                    }
+                    
+                    cacheService.set(cacheKey, data, ttl);
+                } catch (e) {
+                    console.warn('Error al almacenar en caché:', e);
                 }
-                
-                cacheService.set(cacheKey, data, ttl);
-            } catch (e) {
-                console.warn('Error al almacenar en caché:', e);
             }
+            
+            return response;
+        } catch (error) {
+            // Registrar tiempo de respuesta fallida
+            const endTime = performance.now();
+            const duration = endTime - startTime;
+            performanceMonitor.recordApiCall(url, duration, 0); // 0 = Error
+            
+            // Mejorar manejo de errores con logging específico
+            console.error(`Error en fetchWithAuth para ${url}:`, error);
+            
+            // Mostrar mensaje de error al usuario
+            this.showErrorMessage(`Error de conexión: ${error.message || 'Error desconocido'}`);
+            
+            // Lanzar error para que sea manejado por el código llamante
+            throw error;
         }
-        
-        return response;
     }
 
     // Foro público - puede funcionar sin autenticación

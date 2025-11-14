@@ -1,3 +1,4 @@
+// Importación ES6 para consistencia con el resto del proyecto
 import jwt from 'jsonwebtoken';
 
 function authMiddleware(req, res, next) {

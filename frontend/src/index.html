@@ -7,13 +7,13 @@
     <meta name="author" content="Alejo Cruz, Samuel Angarita, Candela Ybañez, Ignacio González, Alejandro Soria, Abigail Durán">
     <title>NotiEset - Noticias ESET UNQ</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="shortcut icon" href="assets/favicon.ico">
     <!-- Swiper.js CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module" src="auth.js"></script>
-    <script type="module" src="auth-ui.js"></script>
-    <script type="module" src="auth-status.js"></script>
-    <script type="module" src="forum-auth.js"></script>
+    <!-- Cargar solo los módulos principales -->
     <script type="module" src="main.js"></script>
     <script type="module" src="forum.js"></script>
 </head>
@@ -34,9 +34,9 @@
             </ul>
         </nav>
         <div id="header-auth-area">
-            <button id="header-auth-btn">Iniciar sesión / Crear cuenta</button>
+            <button id="header-auth-btn" class="btn btn-primary">Iniciar sesión / Crear cuenta</button>
             <span id="header-user-info" style="display:none;"></span>
-            <button id="header-logout-btn" style="display:none;">Cerrar sesión</button>
+            <button id="header-logout-btn" class="btn btn-secondary" style="display:none;">Cerrar sesión</button>
         </div>
     </header>
     <div id="auth-container">
@@ -47,10 +47,10 @@
                 <input type="email" id="login-email" name="email" required>
                 <label for="login-password">Contraseña:</label>
                 <input type="password" id="login-password" name="password" required>
-                <button type="submit">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
             </form>
             <p id="login-error" class="auth-error"></p>
-            <p>¿No tienes cuenta? <button type="button" id="show-register">Crear cuenta</button></p>
+            <p>¿No tienes cuenta? <button type="button" id="show-register" class="btn btn-link">Crear cuenta</button></p>
         </div>
         <div id="register-form" style="display: none;">
             <h2>Crear Cuenta</h2>
@@ -59,14 +59,14 @@
                 <input type="email" id="register-email" name="email" required>
                 <label for="register-password">Contraseña:</label>
                 <input type="password" id="register-password" name="password" required>
-                <button type="submit">Registrarse</button>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
             </form>
             <p id="register-error" class="auth-error"></p>
-            <p>¿Ya tienes cuenta? <button type="button" id="show-login">Iniciar sesión</button></p>
+            <p>¿Ya tienes cuenta? <button type="button" id="show-login" class="btn btn-link">Iniciar sesión</button></p>
         </div>
         <div id="user-info" style="display: none;">
             <p id="user-email"></p>
-            <button id="logout-btn">Cerrar sesión</button>
+            <button id="logout-btn" class="btn btn-secondary">Cerrar sesión</button>
         </div>
     </div>
     <main>
@@ -117,27 +117,27 @@
 
         <section id="galeria" aria-labelledby="galeria-heading">
             <h2 id="galeria-heading">Galería</h2>
-            <div class="swiper galeria-swiper">
+            <div class="swiper galeria-swiper" aria-label="Galería de imágenes de actividades ESET" role="region">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="assets/taller eset1.jpg" alt="Taller ESET 1" />
+                        <img src="assets/taller eset1.jpg" alt="Taller ESET 1 - Actividades en la escuela" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/taller eset2.jpg" alt="Taller ESET 2" />
+                        <img src="assets/taller eset2.jpg" alt="Taller ESET 2 - Estudiantes participando" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/foto header.jpg" alt="Foto header ESET" />
+                        <img src="assets/foto header.jpg" alt="Foto principal del edificio ESET" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/foto mural.jpg" alt="Foto mural ESET" />
+                        <img src="assets/foto mural.jpg" alt="Mural informativo de la escuela" />
                     </div>
                     <div class="swiper-slide">
-                        <img src="assets/cancelacion act.jpg" alt="Actividades ESET" />
+                        <img src="assets/cancelacion act.jpg" alt="Comunicado sobre actividades" />
                     </div>
                 </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev" aria-label="Imagen anterior" role="button" tabindex="0"></div>
+                <div class="swiper-button-next" aria-label="Siguiente imagen" role="button" tabindex="0"></div>
+                <div class="swiper-pagination" aria-label="Indicador de página actual"></div>
             </div>
         </section>
 
@@ -163,7 +163,7 @@
                 <label for="imagen-noticia">Adjuntar Imagen:</label>
                 <input type="file" id="imagen-noticia" name="imagen" accept="image/*">
                 
-                <button type="submit">Publicar</button>
+                <button type="submit" class="btn btn-primary">Publicar</button>
             </form>
         </section>
 
@@ -182,7 +182,7 @@
                     <label><input type="checkbox" name="notificaciones" value="inscripciones"> Inscripciones</label>
                 </fieldset>
                 
-                <button type="submit">Suscribirse</button>
+                <button type="submit" class="btn btn-primary">Suscribirse</button>
             </form>
         </section>
     </main>
@@ -194,16 +194,6 @@
         </section>
         <p>&copy; 2023 NotiEset - Todos los derechos reservados</p>
     </footer>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        new Swiper('.galeria-swiper', {
-          loop: true,
-          pagination: { el: '.swiper-pagination', clickable: true },
-          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-          slidesPerView: 1,
-          spaceBetween: 20,
-        });
-      });
-    </script>
+    
 </body>
 </html>
