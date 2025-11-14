@@ -36,12 +36,15 @@ app.use(compressionMiddleware);
 // Parseo de JSON
 app.use(express.json());
 
-// Rutas del foro
-app.use('/api/forum', forumRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/reactions', reactionRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/news', newsRoutes);
+// Ruta de prueba
+app.get('/', (req, res) => {
+  res.json({ ok: true, message: 'Backend NotiESET funcionando' });
+});
+
+// Ruta de health check para Cypress
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend NotiESET saludable' });
+});
 
 // Ruta para obtener estadísticas de rendimiento
 app.get('/api/performance/stats', (req, res) => {
@@ -55,10 +58,12 @@ app.post('/api/performance/reset', (req, res) => {
   res.json({ success: true, message: 'Estadísticas de rendimiento reseteadas' });
 });
 
-// Ruta de prueba
-app.get('/', (req, res) => {
-  res.json({ ok: true, message: 'Backend NotiESET funcionando' });
-});
+// Rutas del foro
+app.use('/api/forum', forumRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/reactions', reactionRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/news', newsRoutes);
 
 // Middleware de manejo de errores (debe ir al final)
 app.use(errorHandler);
