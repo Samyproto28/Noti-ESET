@@ -3,7 +3,7 @@
  * Tests threat detection, session integrity, and risk scoring
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi, jest, test } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import {
   SecurityEnhancer,
   securityEnhancer,
@@ -14,9 +14,9 @@ import {
 import { createClient } from '@/lib/supabase';
 
 // Mock dependencies
-vi.mock('@/lib/supabase');
-vi.mock('@/lib/rateLimiter');
-vi.mock('crypto');
+jest.mock('@/lib/supabase');
+jest.mock('@/lib/rateLimiter');
+jest.mock('crypto');
 
 describe('Sistema de Seguridad Mejorado - Pruebas Integrales', () => {
   let securityEnhancerInstance: SecurityEnhancer;

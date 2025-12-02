@@ -1371,7 +1371,7 @@
         "dependencies": [
           "4"
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -1470,7 +1470,8 @@
         ],
         "complexity": 7,
         "recommendedSubtasks": 8,
-        "expansionPrompt": "Crear sistema de búsqueda full-text en título y contenido usando PostgreSQL GIN con to_tsvector('spanish'). Filtros por categoría, rango de fechas, autor. Resultados en <500ms para base de 500+ artículos. Resaltado de términos búsqueda. Paginación optimizada. Debouncing en frontend para reducir llamadas."
+        "expansionPrompt": "Crear sistema de búsqueda full-text en título y contenido usando PostgreSQL GIN con to_tsvector('spanish'). Filtros por categoría, rango de fechas, autor. Resultados en <500ms para base de 500+ artículos. Resaltado de términos búsqueda. Paginación optimizada. Debouncing en frontend para reducir llamadas.",
+        "updatedAt": "2025-12-02T00:51:22.476Z"
       },
       {
         "id": "15",
@@ -1593,7 +1594,7 @@
           "4",
           "14"
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -1667,7 +1668,8 @@
         ],
         "complexity": 5,
         "recommendedSubtasks": 6,
-        "expansionPrompt": "Crear endpoint Next.js API route para listar noticias paginadas con soporte de filtros (categorías, rango fechas, autor) y ordenamiento. Usar Supabase client con select optimizado incluyendo autor y conteo de comentarios. Rate limiting 100 req/min por IP. Caching con Next.js revalidate para mejorar performance."
+        "expansionPrompt": "Crear endpoint Next.js API route para listar noticias paginadas con soporte de filtros (categorías, rango fechas, autor) y ordenamiento. Usar Supabase client con select optimizado incluyendo autor y conteo de comentarios. Rate limiting 100 req/min por IP. Caching con Next.js revalidate para mejorar performance.",
+        "updatedAt": "2025-12-02T14:32:41.033Z"
       },
       {
         "id": "17",
@@ -4666,9 +4668,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-01T23:55:24.176Z",
+      "lastModified": "2025-12-02T14:32:41.035Z",
       "taskCount": 45,
-      "completedCount": 6,
+      "completedCount": 8,
       "tags": [
         "master"
       ]

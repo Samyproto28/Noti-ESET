@@ -3,7 +3,7 @@
  * Tests role responsibility validation, compliance reporting, and business process mapping
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi, jest, test } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import {
   RACIService,
   raciService,
@@ -15,7 +15,7 @@ import { createClient } from '@/lib/supabase';
 import type { Database } from '@/lib/database.types';
 
 // Mock dependencies
-vi.mock('@/lib/supabase');
+jest.mock('@/lib/supabase');
 
 describe('Servicio RACI - Pruebas Integrales', () => {
   let raciServiceInstance: RACIService;

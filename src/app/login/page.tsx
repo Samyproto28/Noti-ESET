@@ -1,38 +1,43 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { AuthPage, AuthMode } from '@/components/auth/AuthPage'
-import { useAuth } from '@/hooks/useAuth'
+import React from 'react'
+import { useSearchParams } from 'next/navigation'
+import { LoginForm } from '@/components/auth/LoginForm'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { AlertCircle } from 'lucide-react'
 
 export default function LoginPage() {
-  const router = useRouter()
   const searchParams = useSearchParams()
-  const [mode, setMode] = useState<AuthMode>('login')
-  const { user } = useAuth()
-
-  useEffect(() => {
-    // Check if user is already authenticated
-    if (user) {
-      router.push('/dashboard')
-    }
-
-    // Set mode from URL parameter if provided
-    const signupParam = searchParams.get('signup')
-    if (signupParam === 'true') {
-      setMode('signup')
-    }
-  }, [user, router, searchParams])
-
-  const handleAuthSuccess = () => {
-    // Redirect to dashboard after successful auth
-    router.push('/dashboard')
-  }
+  const redirectTo = searchParams.get('redirectTo') || '/dashboard'
+  const error = searchParams.get('error')
+  const reset = searchParams.get('reset')
 
   return (
-    <AuthPage
-      mode={mode}
-      onSuccess={handleAuthSuccess}
-    />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        {error && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>
+              {error === 'session_invalid' && 'Tu sesión ha expirado o no es válida. Por favor, inicia sesión de nuevo.'}
+              {error === 'middleware_error' && 'Ha ocurrido un error al verificar tu sesión. Por favor, intenta de nuevo.'}
+              {error === 'access_denied' && 'No tienes permiso para acceder a este recurso.'}
+              {error === 'unauthorized' && 'No estás autorizado para acceder a esta página.'}
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {reset && (
+          <Alert className="border-green-500 bg-green-50">
+            <AlertCircle className="h-4 w-4 text-green-500" />
+            <AlertDescription className="text-green-700">
+              Si el correo existe en nuestro sistema, recibirás un enlace para restablecer tu contraseña.
+            </AlertDescription>
+          </Alert>
+        )}
+
+        <LoginForm redirectTo={redirectTo} />
+      </div>
+    </div>
   )
 }

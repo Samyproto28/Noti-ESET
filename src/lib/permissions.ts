@@ -45,8 +45,7 @@ export class PermissionService {
   private cacheExpiry = new Map<string, number>();
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutos en milisegundos
   private readonly CACHE_KEY_PREFIX = 'permission:';
-  private readonly permissionCache = globalCacheManager;
-
+  
   /**
    * Verifica si un usuario tiene permiso para realizar una acción específica
    * @param userId ID del usuario

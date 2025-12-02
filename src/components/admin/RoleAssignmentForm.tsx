@@ -171,7 +171,7 @@ export function RoleAssignmentForm({ onSuccess, onError }: RoleAssignmentFormPro
         <div className="flex items-center space-x-2">
           <span className="text-sm text-gray-500">Rol actual:</span>
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-            {userRoleName || 'No asignado'}
+            {hasRole ? user?.role || 'No asignado' : 'No asignado'}
           </span>
         </div>
       </div>
