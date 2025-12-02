@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NotiEset - Centro de noticias para estudiantes de ESET UNQ">
+    <meta name="author" content="Alejo Cruz, Samuel Angarita, Candela Ybañez, Ignacio González, Alejandro Soria, Abigail Durán">
+    <title>NotiEset - Noticias ESET UNQ</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <!-- Swiper.js CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Cargar solo los módulos principales -->
+    <script type="module" src="main.js"></script>
+    <script type="module" src="forum.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="assets/logo eset.png" alt="Logo de ESET UNQ" class="logo">
+        </div>
+        <h1>NotiEset</h1>
+        <nav class= "barra-navegacion" aria-label="Navegación principal">
+            <ul>
+                <li><a href="#inicio" aria-current="page">Inicio</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#foro">Foro</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+            </ul>
+        </nav>
+        <div id="header-auth-area">
+            <button id="header-auth-btn" class="btn btn-primary">Iniciar sesión / Crear cuenta</button>
+            <span id="header-user-info" style="display:none;"></span>
+            <button id="header-logout-btn" class="btn btn-secondary" style="display:none;">Cerrar sesión</button>
+        </div>
+    </header>
+    <div id="auth-container">
+        <div id="login-form" style="display: none;">
+            <h2>Iniciar Sesión</h2>
+            <form id="form-login">
+                <label for="login-email">Correo electrónico:</label>
+                <input type="email" id="login-email" name="email" required>
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" name="password" required>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </form>
+            <p id="login-error" class="auth-error"></p>
+            <p>¿No tienes cuenta? <button type="button" id="show-register" class="btn btn-link">Crear cuenta</button></p>
+        </div>
+        <div id="register-form" style="display: none;">
+            <h2>Crear Cuenta</h2>
+            <form id="form-register">
+                <label for="register-email">Correo electrónico:</label>
+                <input type="email" id="register-email" name="email" required>
+                <label for="register-password">Contraseña:</label>
+                <input type="password" id="register-password" name="password" required>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+            <p id="register-error" class="auth-error"></p>
+            <p>¿Ya tienes cuenta? <button type="button" id="show-login" class="btn btn-link">Iniciar sesión</button></p>
+        </div>
+        <div id="user-info" style="display: none;">
+            <p id="user-email"></p>
+            <button id="logout-btn" class="btn btn-secondary">Cerrar sesión</button>
+        </div>
+    </div>
+    <main>
+        <section id="inicio" aria-labelledby="inicio-heading">
+            <h2 id="inicio-heading">Bienvenidos a NotiEset</h2>
+            <p>Tu centro de noticias para estar al día con todo lo que sucede en la ESET UNQ. Mantente informado sobre paros, inscripciones, eventos y más.</p>
+        </section>
+
+        <section id="noticias" aria-labelledby="noticias-heading">
+            <h2 id="noticias-heading">Últimas Noticias</h2>
+            <article class="noticia" aria-labelledby="noticia-1">
+                <h3 id="noticia-1">Actividad Escolar Suspendida</h3>
+                <div class="contenedor-imagenes">
+                    <img src="assets/cancelacion act.jpg" alt="Imagen de la noticia">
+                </div>
+                <p>Contenido de la noticia sobre la suspensión de clases debido a un paro programado...</p>
+                <p><strong>Fecha:</strong> 19/06/2025</p>
+                <section class="comentarios" aria-labelledby="comentarios-1">
+                    <h4 id="comentarios-1">Comentarios</h4>
+                    <ul>
+                        <li><strong>Ana:</strong> Uhh que mala noticia!</li>
+                        <li><strong>Carlos:</strong> Gracias por el aviso.</li>
+                    </ul>
+                </section>
+            </article>
+            <article class="noticia" aria-labelledby="noticia-2">
+                <h3 id="noticia-2">Feria de Intercambio 2025</h3>
+                <p>El sábado 14 de Junio se realizó en la ESET UNQ la feria de intercambio solidario donde los estudiantes de 7mo Programación organizaron el buffet, fue todo un éxito!!</p>
+                <div class="contenedor-imagenes">
+                    <img src="assets/taller eset1.jpg" alt="Imagen del evento">
+                    <img src="assets/taller eset2.jpg" alt="Imagen del evento">
+                </div>
+            </article>
+            <p><strong>Fecha:</strong> 06/07/2025</p>
+        </section>
+
+        <section id="eventos" aria-labelledby="eventos-heading">
+            <h2 id="eventos-heading">Próximos Eventos</h2>
+            <article class="evento" aria-labelledby="evento-1">
+                <h3 id="evento-1">Taller de Sábados</h3>
+                <div class="contenedor-imagenes">
+                    <img src="assets/taller eset1.jpg" alt="Fotos de eventos en ESET UNQ">
+                    <img src="assets/taller eset2.jpg" alt="Fotos de eventos en ESET UNQ">
+                </div>
+                <p><strong>Fecha:</strong> 20/05/2023</p>
+            </article>
+        </section>
+
+        <section id="galeria" aria-labelledby="galeria-heading">
+            <h2 id="galeria-heading">Galería</h2>
+            <div class="swiper galeria-swiper" aria-label="Galería de imágenes de actividades ESET" role="region">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="assets/taller eset1.jpg" alt="Taller ESET 1 - Actividades en la escuela" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/taller eset2.jpg" alt="Taller ESET 2 - Estudiantes participando" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/foto header.jpg" alt="Foto principal del edificio ESET" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/foto mural.jpg" alt="Mural informativo de la escuela" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="assets/cancelacion act.jpg" alt="Comunicado sobre actividades" />
+                    </div>
+                </div>
+                <div class="swiper-button-prev" aria-label="Imagen anterior" role="button" tabindex="0"></div>
+                <div class="swiper-button-next" aria-label="Siguiente imagen" role="button" tabindex="0"></div>
+                <div class="swiper-pagination" aria-label="Indicador de página actual"></div>
+            </div>
+        </section>
+
+        <!-- Sección de foro -->
+        <section id="foro" aria-labelledby="foro-heading">
+            <h2 id="foro-heading">Foro de Noticias</h2>
+            <form id="publicar-noticia" aria-labelledby="publicar-noticia-heading">
+                <h3 id="publicar-noticia-heading">Publicar Nueva Noticia</h3>
+                <label for="titulo-noticia">Título:</label>
+                <input type="text" id="titulo-noticia" name="titulo" required>
+                
+                <label for="cuerpo-noticia">Contenido:</label>
+                <textarea id="cuerpo-noticia" name="cuerpo" required></textarea>
+                
+                <label for="categoria-noticia">Categoría:</label>
+                <select id="categoria-noticia" name="categoria" required>
+                    <option value="tramite">Trámite</option>
+                    <option value="eventos">Eventos</option>
+                    <option value="inscripciones">Inscripciones</option>
+                    <option value="general">General</option>
+                </select>
+                
+                <label for="imagen-noticia">Adjuntar Imagen:</label>
+                <input type="file" id="imagen-noticia" name="imagen" accept="image/*">
+                
+                <button type="submit" class="btn btn-primary">Publicar</button>
+            </form>
+        </section>
+
+        <!-- Sección de suscripción -->
+        <section id="suscripcion" aria-labelledby="suscripcion-heading">
+            <h2 id="suscripcion-heading">Suscríbete a Notificaciones</h2>
+            <form id="form-suscripcion" aria-labelledby="suscripcion-form-heading">
+                <h3 id="suscripcion-form-heading">Configura tus preferencias</h3>
+                <label for="email-suscripcion">Correo Electrónico:</label>
+                <input type="email" id="email-suscripcion" name="email" required>
+                
+                <fieldset>
+                    <legend>Preferencias de Notificación:</legend>
+                    <label><input type="checkbox" name="notificaciones" value="tramites"> Trámites</label>
+                    <label><input type="checkbox" name="notificaciones" value="eventos"> Eventos</label>
+                    <label><input type="checkbox" name="notificaciones" value="inscripciones"> Inscripciones</label>
+                </fieldset>
+                
+                <button type="submit" class="btn btn-primary">Suscribirse</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <section id="sobre-nosotros" aria-labelledby="sobre-nosotros-heading">
+            <h2 id="sobre-nosotros-heading">Sobre Nosotros</h2>
+            <p>NotiEset es una iniciativa estudiantil para mantener informada a la comunidad de ESET UNQ. Somos un equipo de estudiantes comprometidos con brindar noticias actualizadas y relevantes.</p>
+        </section>
+        <p>&copy; 2023 NotiEset - Todos los derechos reservados</p>
+    </footer>
+    
+</body>
+</html>

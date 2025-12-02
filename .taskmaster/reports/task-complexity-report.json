@@ -1,0 +1,373 @@
+{
+	"meta": {
+		"generatedAt": "2025-11-30T17:49:53.098Z",
+		"tasksAnalyzed": 45,
+		"totalTasks": 45,
+		"analysisCount": 45,
+		"thresholdScore": 5,
+		"projectName": "Noti-eset",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Configurar proyecto Next.js 14 con App Router",
+			"complexityScore": 3,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Crear estructura inicial del proyecto Next.js 14 con App Router, configurar TypeScript, Tailwind CSS v3.4+, y mobile-first. Establecer sistema de build y desarrollo.",
+			"reasoning": "Proyecto actual es HTML estático con CSS vanilla. Requiere migración completa a Next.js 14 con Server Components. Configuración básica de Next.js con create-next-app, setup de TypeScript y Tailwind. Estructura de archivos y carpetas inicial."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Configurar Tailwind CSS mobile-first",
+			"complexityScore": 4,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Migrar de CSS vanilla a Tailwind CSS v3.4+ implementando sistema mobile-first con breakpoints personalizados. Configurar @tailwindcss/forms y @tailwindcss/typography. Reemplazar estilos existentes.",
+			"reasoning": "El proyecto tiene 354 líneas de CSS vanilla que necesitan ser convertidas a Tailwind CSS. Configurar breakpoints personalizados (mobile <640px, tablet 640-1024px, desktop >1024px). Integrar plugins de forms y typography. Garantizar mobile-first touch targets >=44x44px."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Configurar Supabase Database y Auth",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Configurar conexión Supabase PostgreSQL, instalar @supabase/supabase-js v2.39+, configurar variables de entorno NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY. Setup de cliente Supabase y Row Level Security.",
+			"reasoning": "Ya existen credenciales Supabase en .env pero falta integración con Next.js. Requiere instalar dependencias, configurar cliente Supabase, setup de variables de entorno en Next.js, y configuración inicial de Row Level Security."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Crear schema de base de datos en Supabase",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Diseñar e implementar schema SQL completo para la aplicación: users (UUID PK, email UNIQUE, role CHECK), news (UUID PK, category CHECK, author_id FK), comments (UUID PK, parent_comment_id FK), reactions (UNIQUE constraint), forum_topics, images. Crear índices optimizados.",
+			"reasoning": "Requiere diseño completo de base de datos relacional. Múltiples tablas con relaciones foreign key, constraints CHECK, y UNIQUE. Implementar índices para performance. SQL complejo con UUIDs, jerarquía de comentarios, y sistema de reacciones único por usuario."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implementar Row Level Security (RLS) policies",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Crear políticas RLS granulares: estudiantes solo ven sus propios perfiles, comentarios no aprobados solo visibles por autor y moderadores, diferentes niveles de acceso por rol (student, moderator, admin, superadmin). Implementar auditoría de cambios de rol.",
+			"reasoning": "Políticas RLS complejas con múltiples roles y niveles de acceso. Requiere lógica condicional basada en roles, verificación de ownership de contenido, políticas para comentarios pendientes de aprobación, y auditoría de cambios de rol con timestamps."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Diseñar y crear componentes UI base",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear librería de componentes reutilizables con Tailwind CSS: Button (primary/secondary/link, sizes responsive), Card, Modal, Form, Input, Select, Textarea, Loading states. Design system consistente con colores ESET (naranja #b60000). WCAG 2.1 AA compliance.",
+			"reasoning": "Requiere migrar estilos CSS vanilla a componentes React reutilizables. Implementar design system completo con variantes, sizes, y estados. Garantizar accesibilidad WCAG 2.1 AA con contrast ratio 4.5:1, navigation por teclado, y ARIA labels."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implementar sistema de registro institucional",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear formulario de registro multi-step progresivo con validación @eset.edu.ar exclusiva. Validación frontend con Zod (email @eset.edu.ar, contraseña 8+ caracteres con mayúscula, número y carácter especial). Integrar verificación email con magic link Supabase. UX mobile-first.",
+			"reasoning": "Sistema de registro complejo con validación de dominio institucional específico. Requiere multi-step form, validación robusta con Zod, integración con Supabase Auth magic links, manejo de estados, y UX mobile-first con <3 campos visibles por vez."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Implementar sistema de login JWT",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Implementar sistema de autenticación seguro con Supabase Auth signInWithPassword. Access tokens 1 hora, refresh tokens 30 días. Rate limiting (5 intentos fallidos/IP en 15 min). Middleware Next.js para proteger rutas. CSRF protection en formularios. Logout seguro.",
+			"reasoning": "Sistema de autenticación JWT robusto con refresh tokens. Requiere middleware Next.js para protección de rutas, rate limiting configurable, CSRF tokens en forms, manejo de sesión segura, y logout completo limpiando cookies y tokens."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Crear sistema de gestión de roles y permisos",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Implementar sistema RBAC con 4 roles (Estudiante, Moderador, Admin, Superadmin) y matriz de permisos diferenciada. Verificación de permisos <50ms por request. Los estudiantes no pueden cambiar sus propios permisos. Audit log para cambios de rol con timestamps.",
+			"reasoning": "Sistema RBAC complejo con 4 roles y matriz de permisos granular. Requiere verificación eficiente de permisos (<50ms), restricciones de auto-modificación de permisos, auditoría completa de cambios, y prevención de escalada de privilegios."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Crear perfil de usuario responsive",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Implementar sistema de perfiles con foto de perfil (JPG/PNG max 2MB, 200x200px) almacenada en Supabase Storage. Configuración de notificaciones guardada en <500ms. Historial de cambios visible para usuario. Formulario responsive validado con Zod. Vista previa de foto antes de subir.",
+			"reasoning": "Sistema de perfiles con gestión de archivos en Supabase Storage. Requiere upload/compresión de imágenes, validación de archivos, responsive design, historial de cambios, configuración de notificaciones, y vista previa de imágenes antes de upload."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Implementar editor de noticias rich-text",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear editor HTML5 responsivo para contenido enriquecido de noticias con @tiptap/react v2.1+. Soporte para imágenes embebidas (JPG, PNG, WebP max 5MB). Caracteres especiales renderizan correctamente. Tiempo de carga <2 segundos. Vista previa en tiempo real. Validación XSS con DOMPurify.",
+			"reasoning": "Editor rich-text complejo con soporte de imágenes y seguridad. Requiere integración @tiptap/react, sanitización XSS con DOMPurify, manejo de uploads de imágenes, vista previa en tiempo real, y compatibilidad cross-browser."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Implementar sistema de categorización automática",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Crear sistema de 4 categorías automáticas para noticias: Trámites, Eventos, Inscripciones, General. Cada categoría con ícono distintivo y color. Filtrado por categoría en <1 segundo usando índices PostgreSQL. UI intuitiva para selección con chips o dropdown. Responsive mobile y desktop.",
+			"reasoning": "Sistema de categorización con backend optimizado. Requiere 4 categorías con íconos/colores distintivos, índices PostgreSQL para queries <1 segundo, UI responsive con chips/dropdown, y filtrado eficiente de 500+ artículos."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Implementar sistema de publicación programada",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear sistema para agendar publicaciones futuras hasta 90 días. Calendar picker intuitivo (react-datepicker) con zona horaria ART configurada correctamente. Notificación 24h antes de publicación. Máximo error de 5 minutos en ejecución. Tabla programados con trigger PostgreSQL. Validación de fechas futuras solo.",
+			"reasoning": "Sistema de programación de publicaciones con trigger PostgreSQL. Requiere calendar picker con zona horaria ART, sistema de notificaciones 24h previas, trigger PostgreSQL para ejecución automática, validación de fechas futuras, y manejo de errores de programación."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implementar buscador avanzado full-text",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear sistema de búsqueda full-text en título y contenido usando PostgreSQL GIN con to_tsvector('spanish'). Filtros por categoría, rango de fechas, autor. Resultados en <500ms para base de 500+ artículos. Resaltado de términos búsqueda. Paginación optimizada. Debouncing en frontend para reducir llamadas.",
+			"reasoning": "Sistema de búsqueda complejo con PostgreSQL full-text search. Requiere GIN index con to_tsvector, múltiples filtros combinados, optimización para <500ms con 500+ artículos, resaltado de términos, paginación eficiente, y debouncing frontend."
+		},
+		{
+			"taskId": 15,
+			"taskTitle": "Implementar sistema de destacados de portada",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear carrusel configurable para hasta 5 noticias principales. Carrusel se carga en <1 segundo con lazy loading. Cada destacado muestra thumbnail optimizado, título, descripción corta. Orden configurable mediante drag-and-drop (react-beautiful-dnd). Mobile: carrusel swipeable. Auto-rotación cada 5 segundos pausable.",
+			"reasoning": "Carrusel interactivo con drag-and-drop y lazy loading. Requiere react-beautiful-dnd para reordenamiento, lazy loading de thumbnails, auto-rotación configurable, swipe gestures en mobile, y carga <1 segundo."
+		},
+		{
+			"taskId": 16,
+			"taskTitle": "Implementar API endpoint GET /api/news",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Crear endpoint Next.js API route para listar noticias paginadas con soporte de filtros (categorías, rango fechas, autor) y ordenamiento. Usar Supabase client con select optimizado incluyendo autor y conteo de comentarios. Rate limiting 100 req/min por IP. Caching con Next.js revalidate para mejorar performance.",
+			"reasoning": "API route con paginación y filtros complejos. Requiere Supabase client optimizado con JOINs, rate limiting configurable, caching con revalidate, manejo de query parameters, y responses estructuradas con metadatos."
+		},
+		{
+			"taskId": 17,
+			"taskTitle": "Implementar API endpoint GET /api/news/:id",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear endpoint Next.js API route para obtener detalle de noticia con comentarios jerárquicos (máximo 3 niveles) y reacciones. View count incrementado atómicamente en cada visita. Optimización con JOINs eficientes. Respuesta en <200ms. Manejo de errores 404 para noticias no existentes.",
+			"reasoning": "API route con detalle complejo y comentarios jerárquicos. Requiere JOINs eficientes, manejo de jerarquía de comentarios (máximo 3 niveles), incremento atómico de view_count, optimización para <200ms, y manejo robusto de errores 404."
+		},
+		{
+			"taskId": 18,
+			"taskTitle": "Implementar API endpoint POST /api/news",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear endpoint Next.js API route protegido para roles admin+. Validación con Zod: title, content, category (enum), author_id. Sanitización HTML con DOMPurify. Procesamiento de imágenes (upload a Supabase Storage, compresión automática). Respuesta con noticia creada. Transaction atómica en base de datos.",
+			"reasoning": "API route protegida con sanitización y uploads. Requiere middleware de autenticación por rol, validación Zod estricta, sanitización XSS con DOMPurify, procesamiento de imágenes con upload a Storage, compresión automática, y transacciones atómicas."
+		},
+		{
+			"taskId": 19,
+			"taskTitle": "Implementar sistema de tópicos y comentarios jerárquicos",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Crear sistema de foro con anidamiento hasta 3 niveles. UI clara mostrando relación padre-hijo con indentación visual. Máximo 3 niveles de profundidad. Creación de tópicos en <30 segundos. Almacenamiento en Supabase con parent_comment_id FK. Lazy loading para comentarios largos. Avatares de usuarios responsive. Timestamps relativos.",
+			"reasoning": "Sistema de foro con jerarquía compleja de 3 niveles. Requiere UI con indentación visual, lazy loading optimizado, manejo de timestamps relativos, avatares responsive, límite de 3 niveles de profundidad, y creación rápida (<30s)."
+		},
+		{
+			"taskId": 20,
+			"taskTitle": "Implementar sistema de reacciones con emojis",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear sistema para reaccionar con emojis (👍, ❤️, 😂, 🤔, 😢) a comentarios. Máximo 1 reacción por usuario por comentario (UNIQUE constraint). Contador actualizado en tiempo real con Supabase realtime. Hover muestra lista de usuarios que reaccionaron. Mobile: tap para seleccionar reacción. Queries optimizadas.",
+			"reasoning": "Sistema de reacciones en tiempo real con UNIQUE constraint. Requiere Supabase realtime para actualizaciones, UI hover/tap para mostrar usuarios, UNIQUE constraint para 1 reacción por usuario, contador optimizado, y mobile-friendly interaction patterns."
+		},
+		{
+			"taskId": 21,
+			"taskTitle": "Implementar sistema de notificaciones de respuestas",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Crear sistema de notificaciones para respuestas a comentarios con Supabase Realtime. Notificación en-app dentro de 5 segundos cuando alguien responde. Opción de deshabilitar por tópico. Link en notificación lleva directamente al comentario. Máximo 1 notificación consolidada por tópico/hora.",
+			"reasoning": "Sistema de notificaciones en tiempo real con consolidación. Requiere Supabase Realtime para actualizaciones instantáneas, lógica de consolidación (máximo 1/hora por tópico), links directos a comentarios, opción de deshabilitación, y UI non-intrusiva."
+		},
+		{
+			"taskId": 22,
+			"taskTitle": "Implementar sistema de moderación básica",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear sistema para moderadores editar/eliminar comentarios inapropiados con registro de auditoría. Edición/eliminación toma <1 segundo. Historial de cambios visible para moderadores. Notificación automática al usuario eliminado explicando razón. Comentarios eliminados muestran '[Comentario eliminado por moderación]'.",
+			"reasoning": "Sistema de moderación con auditoría completa. Requiere roles diferenciados para moderadores, auditoría de cambios con timestamps, notificación automática a usuarios, placeholder para comentarios eliminados, y optimización para <1 segundo."
+		},
+		{
+			"taskId": 23,
+			"taskTitle": "Implementar sistema de reportes de contenido",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Crear sistema para que estudiantes reporten comentarios inapropiados. Categorías de reporte: Spam, Acoso, Contenido Inapropiado, Otro. Máximo 1 reporte por usuario por comentario. Dashboard para moderadores mostrando reportes pendientes con prioridad por cantidad de reportes. Automatización threshold para auto-eliminar con múltiples reportes.",
+			"reasoning": "Sistema de reportes con dashboard moderación. Requiere UNIQUE constraint (1 reporte por usuario por comentario), 4 categorías de reporte, dashboard con priorización por cantidad, y automatización para auto-eliminar con threshold configurado."
+		},
+		{
+			"taskId": 24,
+			"taskTitle": "Implementar carrusel interactivo de galería",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear carrusel responsive para imágenes de eventos recientes con Swiper.js. Auto-rotación cada 5 segundos (pausable). Botones prev/next funcionales. Mobile: swipe para navegar. Lazy loading de imágenes >3. Tiempo de carga <2 segundos. Imágenes desde Supabase Storage con transformaciones URL.",
+			"reasoning": "Carrusel de imágenes con Swiper.js y lazy loading. Requiere Swiper.js configurado, auto-rotación pausable, swipe gestures en mobile, lazy loading optimizado, transformaciones Supabase Storage URL, y carga <2 segundos."
+		},
+		{
+			"taskId": 25,
+			"taskTitle": "Implementar sistema de gestión de imágenes",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear sistema para subir/organizar imágenes en Supabase Storage. Soporte JPG, PNG, WebP. Compresión automática (máximo 1MB). Drag-and-drop para organización. Búsqueda por descripción. Máximo 500 imágenes por galería. Interface responsive con vista en grid y lista. Metadatos guardados en base de datos. Backups automáticos.",
+			"reasoning": "Sistema completo de gestión de imágenes con Storage. Requiere drag-and-drop, compresión automática, metadatos en base de datos, múltiples formatos (JPG/PNG/WebP), búsqueda por descripción, interface responsive (grid/list), límite de 500 imágenes, y backups automáticos."
+		},
+		{
+			"taskId": 26,
+			"taskTitle": "Implementar optimización de imágenes responsive",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Generar thumbnails y versiones responsive automáticamente con Supabase Storage transformaciones. Thumbnail 200x200px (<50KB) para vistas previas. Versión mobile 480px ancho (<200KB). Versión desktop 1200px ancho (<400KB). Formato WebP cuando navegador lo soporte. Caching automático 24h. Lazy loading con intersection observer.",
+			"reasoning": "Sistema de optimización de imágenes responsive. Requiere transformaciones Supabase Storage URL, múltiples tamaños optimizados, WebP automático, caching 24h, lazy loading con intersection observer, y optimización de pesos de archivo."
+		},
+		{
+			"taskId": 27,
+			"taskTitle": "Implementar dashboard principal de administración",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear dashboard con estadísticas principales y acciones rápidas. Carga en <2 segundos. Muestra: total noticias, comentarios pendientes, usuarios activos (hoy/mes). Gráfico de tendencia de engagement (últimas 4 semanas) con recharts o similar. Botones rápidos: Nueva noticia, Ver reportes, Moderar comentarios. Responsive en tablet y desktop.",
+			"reasoning": "Dashboard administrativo con métricas y gráficos. Requiere consultas optimizadas para estadísticas, gráficos con recharts, diseño responsive tablet/desktop, carga <2 segundos, botones de acciones rápidas, y actualización en tiempo real."
+		},
+		{
+			"taskId": 28,
+			"taskTitle": "Implementar gestor de contenido de noticias",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Crear interfaz para CRUD de noticias con vista previa en tiempo real. Tabla listando noticias con búsqueda/filtros full-text. Botón crear abre formulario completo con vista previa lado-a-lado. Edición in-place de cambios menores. Confirmación antes de eliminar. Historial de versiones para últimas 3 versiones. Design responsive con DataTables o similar.",
+			"reasoning": "CRUD completo de noticias con vista previa real-time. Requiere búsqueda/filtros full-text, vista previa lado-a-lado, edición in-place, historial de versiones, confirmación de eliminación, diseño responsive tipo DataTables, y optimización de queries."
+		},
+		{
+			"taskId": 29,
+			"taskTitle": "Implementar gestor de usuarios y roles",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Crear interfaz para gestionar usuarios, roles y permisos. Tabla con búsqueda/filtros por rol, estado, fecha registro. Cambio de rol mediante dropdown (actualiza RLS policies). Deshabilitar usuario sin eliminar datos. Auditoría: quién cambió qué y cuándo. Bulk actions para asignar rol a múltiples. Responsive design con acciones masivas.",
+			"reasoning": "Gestor de usuarios con roles y auditoría. Requiere tabla con búsqueda/filtros múltiples, cambio de rol con actualización RLS, deshabilitación sin eliminación, auditoría completa de cambios, bulk actions, diseño responsive, y acciones masivas."
+		},
+		{
+			"taskId": 30,
+			"taskTitle": "Implementar panel de moderación de contenido",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear interfaz para moderadores revisar y aprobar/rechazar contenido. Cola de comentarios pendientes (is_approved = FALSE). Preview del contexto (noticia/tópico original). Botones: Aprobar, Rechazar (con razón). Notificación automática al usuario. Query eficiente para obtener pendientes con paginación. Filtros por categoría de reporte.",
+			"reasoning": "Panel de moderación con contexto previa. Requiere UI para revisión de pendientes, preview de contexto completo, botones de aprobación/rechazo con razones, notificaciones automáticas, queries eficientes paginadas, y filtros por categoría de reporte."
+		},
+		{
+			"taskId": 31,
+			"taskTitle": "Implementar sistema de analytics y reportes",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Crear panel con KPIs de engagement y métricas principales. Usuarios activos (diarios/mensuales) desde tabla users. Noticias más leídas (ORDER BY view_count DESC). Comentarios por tópico. Tasa de participación por categoría. Exportar a CSV. Responsive con gráficos interactivos. Datos cacheados por 1 hora para performance.",
+			"reasoning": "Sistema de analytics con KPIs y exportación. Requiere cálculo de métricas complejas (usuarios activos, engagement, tasa participación), gráficos interactivos responsive, exportación CSV, caching por 1 hora, y queries optimizadas para grandes volúmenes de datos."
+		},
+		{
+			"taskId": 32,
+			"taskTitle": "Configurar deployment en Vercel",
+			"complexityScore": 4,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Establecer pipeline de CI/CD automático con Vercel. Configurar vercel.json con build settings optimizados. Auto-deploy en cada push a main. Preview deployments para PRs. Automatic edge caching. Environment variables configuradas. Custom domain setup. Analytics integrado. Optimización para Next.js 14 serverless.",
+			"reasoning": "Configuración de deployment en Vercel. Requiere vercel.json optimizado, configuración de environment variables, setup de custom domain, integración analytics, preview deployments para PRs, edge caching automático, y optimización Next.js 14 serverless."
+		},
+		{
+			"taskId": 33,
+			"taskTitle": "Implementar optimización de performance",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Optimizar aplicación para Lighthouse score ≥90. Implementar Next.js Image para lazy loading automático. Code splitting dinámico. Caching estratégico con stale-while-revalidate. Bundle analysis para identificar oportunidades. Minificación CSS/JS. Preload critical resources. Service Worker para offline básico. Optimización Core Web Vitals.",
+			"reasoning": "Optimización completa de performance. Requiere Next.js Image optimizado, code splitting dinámico, caching avanzado, bundle analysis, service worker, Core Web Vitals optimization, minificación, y estrategias de preload para alcanzar Lighthouse ≥90."
+		},
+		{
+			"taskId": 34,
+			"taskTitle": "Implementar seguridad web y protección contra ataques",
+			"complexityScore": 9,
+			"recommendedSubtasks": 11,
+			"expansionPrompt": "Asegurar aplicación contra XSS, CSRF, SQL Injection y otros ataques. Validación estricta con Zod en todos los inputs. Sanitización HTML con DOMPurify. Protección CSRF con tokens. Rate limiting configurable. Security headers (CSP, HSTS). SQL injection protection con RLS y queries parameterizadas. Penetration testing regular. Backup diario automático.",
+			"reasoning": "Seguridad completa contra múltiples vectores de ataque. Requiere validación Zod estricta, sanitización XSS con DOMPurify, protección CSRF tokens, security headers (CSP, HSTS), rate limiting, SQL injection protection con RLS, penetration testing regular, y backups automáticos."
+		},
+		{
+			"taskId": 35,
+			"taskTitle": "Implementar testing exhaustivo (Unit, Integration, E2E)",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Crear suite de pruebas completa con Jest, React Testing Library y Playwright. Unit tests con Jest + React Testing Library (mínimo 80% coverage). Integration tests para API routes. E2E tests con Playwright para user journeys críticos. Visual regression testing. Testing de accesibilidad. Performance testing. CI/CD pipeline con tests automáticos.",
+			"reasoning": "Suite de pruebas completa multi-nivel. Requiere Jest + React Testing Library con 80% coverage mínimo, integration tests para API routes, E2E tests con Playwright, visual regression testing, testing de accesibilidad, performance testing, y CI/CD pipeline integrado."
+		},
+		{
+			"taskId": 36,
+			"taskTitle": "Implementar responsive design avanzado",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Refinar diseño responsive para óptima experiencia en todos los dispositivos. Optimizar breakpoints para dispositivos específicos. Touch states optimizados. Gesture support. Viewport meta tags. Responsive images con srcset. Responsive typography con fluid typography. Progressive enhancement. PWA básico con manifest.json. Offline support básico.",
+			"reasoning": "Responsive design avanzado multi-dispositivo. Requiere optimización de breakpoints específicos, touch states, gesture support, viewport meta tags, responsive images con srcset, fluid typography, progressive enhancement, PWA básico, y offline support."
+		},
+		{
+			"taskId": 37,
+			"taskTitle": "Implementar accesibilidad WCAG 2.1 AA",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Asegurar cumplimiento completo de estándares WCAG 2.1 AA. Colores con contraste suficiente (4.5:1 mínimo). Navegación por teclado completa. Screen reader support con ARIA labels. Alt text descriptivo en imágenes. Forms con labels asociados. Focus management. Skip links. Resize text 200% sin romper layout. Testing con axe DevTools y screen readers reales.",
+			"reasoning": "Accesibilidad completa WCAG 2.1 AA. Requiere contrast ratio 4.5:1, navegación completa por teclado, ARIA labels para screen readers, alt text descriptivo, forms con labels asociados, focus management, skip links, resize text 200% sin romper layout, y testing con axe y screen readers."
+		},
+		{
+			"taskId": 38,
+			"taskTitle": "Implementar optimización de base de datos avanzada",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Optimizar queries PostgreSQL e implementar caching. Analizar queries lentos con EXPLAIN. Índices compuestos para búsquedas complejas. Materialized views para reportes complejos. Connection pooling optimizado. Query results caching con Redis (opcional). Database partitioning por fecha si es necesario. Monitor de performance de queries.",
+			"reasoning": "Optimización avanzada de base de datos. Requiere análisis con EXPLAIN, índices compuestos, materialized views, connection pooling, query caching con Redis (opcional), database partitioning por fecha, y monitor de performance."
+		},
+		{
+			"taskId": 39,
+			"taskTitle": "Implementar monitoring y logging",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Configurar sistema completo de monitoreo y logging. Error tracking con Sentry. Performance monitoring con Vercel Analytics. Custom metrics para KPIs específicos. Structured logging. Alert configurado para errores críticos. Uptime monitoring. Database performance monitoring. User behavior tracking con GA4.",
+			"reasoning": "Sistema completo de monitoreo. Requiere Sentry para error tracking, Vercel Analytics para performance, custom metrics para KPIs, structured logging, alert configurado, uptime monitoring, database monitoring, y GA4 para user behavior."
+		},
+		{
+			"taskId": 40,
+			"taskTitle": "Implementar PWA y capacidades offline",
+			"complexityScore": 4,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Crear Progressive Web App con funcionalidad offline básica. Manifest.json con iconos PWA. Service Worker para caché de recursos críticos. Offline fallback page. Background sync para acciones pendientes. Push notifications (preparación para fase 2). Install prompt personalizado. App shell architecture. Cache-first strategy.",
+			"reasoning": "PWA básico con capacidades offline. Requiere manifest.json, service worker para caché crítico, offline fallback page, background sync para acciones pendientes, PWA install prompt, app shell architecture, y cache-first strategy."
+		},
+		{
+			"taskId": 41,
+			"taskTitle": "Configurar documentación técnica y API",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Crear documentación completa para desarrolladores y API. OpenAPI 3.0 specification con Swagger UI. Documentación de componentes con Storybook. Guías de contribución. Database schema documentation. Deployment guide. README completo con setup instructions. API examples en Postman collection.",
+			"reasoning": "Documentación técnica completa. Requiere OpenAPI 3.0 con Swagger UI, Storybook para componentes, guías de contribución, database schema documentation, deployment guide completo, README detallado, y Postman collection con examples."
+		},
+		{
+			"taskId": 42,
+			"taskTitle": "Implementar internacionalización (i18n)",
+			"complexityScore": 3,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Preparar sistema para soportar múltiples idiomas en el futuro. Setup next-i18next o similar. Español como idioma por defecto. Estructura para inglés en el futuro. Separación de contenido de UI. Lazy loading de traducciones. Formato de fechas localizadas. Números localizados. Testing de RTL readiness (para futuros idiomas RTL).",
+			"reasoning": "Sistema i18n preparado para expansión futura. Requiere next-i18next setup, español como default, estructura para inglés futuro, lazy loading de traducciones, formatos localizadas (fechas, números), y testing de RTL readiness para futuras expansiones."
+		},
+		{
+			"taskId": 43,
+			"taskTitle": "Implementar sistema de backup y recovery",
+			"complexityScore": 4,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Crear estrategia completa de backup y recuperación. Backup diario automático de base de datos (Supabase ya lo provee). Backup de imágenes en Storage con retención de 30 días. Export regular de contenido. Documentación de recovery procedures. Testing regular de backups. DR (Disaster Recovery) plan básico. Point-in-time recovery capability.",
+			"reasoning": "Estrategia completa de backup y recovery. Requiere backup diario automático (Supabase), backup imágenes con retención 30 días, export regular de contenido, documentación de recovery procedures, testing regular, DR plan básico, y point-in-time recovery."
+		},
+		{
+			"taskId": 44,
+			"taskTitle": "Implementar SEO optimización",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Optimizar aplicación para motores de búsqueda. Meta tags optimizadas con Open Graph y Twitter Cards. Sitemap.xml generado automáticamente. Robots.txt configurado. Structured data con JSON-LD. URL canónicas y amigables. Page titles descriptivos. Meta descriptions únicas. Imágenes con alt text. Core Web Vitals optimizadas para SEO.",
+			"reasoning": "Optimización SEO completa. Requiere meta tags (Open Graph, Twitter Cards), sitemap.xml automático, robots.txt, structured data con JSON-LD, URLs canónicas, títulos descriptivos únicos, meta descriptions únicas, alt text en imágenes, y Core Web Vitals optimizados."
+		},
+		{
+			"taskId": 45,
+			"taskTitle": "Configurar analytics y métricas de negocio",
+			"complexityScore": 5,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Implementar sistema completo de medición según KPIs del PRD. Configurar Google Analytics 4 con custom events para engagement: comentarios, reacciones, tópicos creados. Funnels para registro y participación. Retención de usuarios medida. Time on site. Page views por categoría. Conversion tracking. Dashboard automatizado con KPIs.",
+			"reasoning": "Analytics y métricas de negocio completas. Requiere GA4 con custom events, funnels para conversión, medición de retención, time on site, page views por categoría, conversion tracking, dashboard automatizado con KPIs (MAU, engagement rate, retention)."
+		}
+	]
+}
